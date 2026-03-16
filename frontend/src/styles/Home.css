@@ -365,6 +365,10 @@ body {
   gap: 4px;
 }
 
+.stars svg {
+  filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+}
+
 .rating-text {
   font-size: 16px;
   color: var(--text-secondary);
@@ -579,6 +583,10 @@ body {
   gap: 8px;
   justify-content: center;
   margin-bottom: 32px;
+}
+
+.review-stars svg {
+  filter: drop-shadow(0 3px 6px rgba(255, 215, 0, 0.4));
 }
 
 .review-text {

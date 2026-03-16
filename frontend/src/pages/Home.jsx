@@ -153,13 +153,13 @@ const Home = () => {
             </a>
             <a href={`tel:${phoneNumber}`} className="btn-secondary btn-large">
               <Phone size={20} />
-              661 38 88 80
+              +34 661 38 88 80
             </a>
           </div>
           <div className="hero-rating">
             <div className="stars">
               {[...Array(5)].map((_, i) =>
-              <Star key={i} size={24} fill="#FF6B00" color="#FF6B00" />
+              <Star key={i} size={24} fill="#FFD700" color="#FFD700" strokeWidth={2.5} />
               )}
             </div>
             <span className="rating-text">5.0 estrellas · Valoración de clientes</span>
@@ -237,7 +237,7 @@ const Home = () => {
           <div className="review-card animate-on-scroll">
             <div className="review-stars">
               {[...Array(5)].map((_, i) =>
-              <Star key={i} size={32} fill="#FF6B00" color="#FF6B00" />
+              <Star key={i} size={32} fill="#FFD700" color="#FFD700" strokeWidth={2.5} />
               )}
             </div>
             <p className="review-text">
@@ -279,7 +279,7 @@ const Home = () => {
                 </div>
                 <div>
                   <h3 className="contact-label">Teléfono</h3>
-                  <a href={`tel:${phoneNumber}`} className="contact-link">661388880
+                  <a href={`tel:${phoneNumber}`} className="contact-link">+34 661 38 88 80
 
                   </a>
                 </div>
@@ -387,7 +387,7 @@ const Home = () => {
             </div>
             <div className="footer-contact">
               <h4 className="footer-heading">Contacto</h4>
-              <p className="footer-text">661 38 88 80</p>
+              <p className="footer-text">+34 661 38 88 80</p>
               <p className="footer-text">Aguadulce, Almería</p>
             </div>
           </div>
