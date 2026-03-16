@@ -44,6 +44,53 @@ body {
   overflow-x: hidden;
 }
 
+/* Hero Animations */
+.hero-animate {
+  opacity: 0;
+  animation: heroFadeInUp 0.8s ease-out forwards;
+}
+
+.hero-title.hero-animate {
+  animation-delay: 0.2s;
+}
+
+.hero-subtitle.hero-animate {
+  animation-delay: 0.4s;
+}
+
+.hero-cta-group.hero-animate {
+  animation-delay: 0.6s;
+}
+
+@keyframes heroFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll Animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animation for service cards */
+.service-card.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.service-card.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.service-card.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.service-card.animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+
 .home-container {
   width: 100%;
   background: var(--bg-primary);

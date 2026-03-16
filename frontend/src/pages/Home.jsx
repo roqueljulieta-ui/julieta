@@ -38,10 +38,29 @@ const Home = () => {
       link.addEventListener('click', handleSmoothScroll);
     });
 
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections and animated elements
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+
     return () => {
       links.forEach((link) => {
         link.removeEventListener('click', handleSmoothScroll);
       });
+      animatedElements.forEach(el => observer.unobserve(el));
     };
   }, []);
 
@@ -124,11 +143,11 @@ const Home = () => {
           className="hero-image" />
 
         <div className="hero-content">
-          <h1 className="hero-title">Especialistas en Motores de Maquinaria Pesada</h1>
-          <p className="hero-subtitle">
+          <h1 className="hero-title hero-animate">Especialistas en Motores de Maquinaria Pesada</h1>
+          <p className="hero-subtitle hero-animate">
             Reparación y mantenimiento profesional de camiones, excavadoras, grúas y motores industriales en Almería
           </p>
-          <div className="hero-cta-group">
+          <div className="hero-cta-group hero-animate">
             <a href="#contacto" className="btn-primary btn-large">
               Solicitar Presupuesto
             </a>
@@ -152,7 +171,7 @@ const Home = () => {
       <section id="sobre-nosotros" className="about-section">
         <div className="container-content">
           <div className="about-grid">
-            <div className="about-text">
+            <div className="about-text animate-on-scroll">
               <h2 className="section-title">Sobre Nosotros</h2>
               <p className="about-description">
                 En <strong>Services Truck</strong> somos especialistas en la reparación y mantenimiento de motores de maquinaria pesada. 
@@ -181,7 +200,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="about-image-container">
+            <div className="about-image-container animate-on-scroll">
               <img
                 src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/ybrxr929_PHOTO-2025-10-07-23-54-24.jpg"
                 alt="Camión volquete en trabajo de construcción - Services Truck"
@@ -195,13 +214,13 @@ const Home = () => {
       {/* Services Section */}
       <section id="servicios" className="services-section">
         <div className="container-content">
-          <h2 className="section-title centered">Nuestros Servicios</h2>
-          <p className="section-subtitle centered">
+          <h2 className="section-title centered animate-on-scroll">Nuestros Servicios</h2>
+          <p className="section-subtitle centered animate-on-scroll">
             Soluciones completas para tu maquinaria pesada
           </p>
           <div className="services-grid">
             {services.map((service, index) =>
-            <div key={index} className="service-card">
+            <div key={index} className="service-card animate-on-scroll">
                 <div className="service-icon">{service.icon}</div>
                 <h3 className="service-title">{service.title}</h3>
                 <p className="service-description">{service.description}</p>
@@ -214,8 +233,8 @@ const Home = () => {
       {/* Reviews Section */}
       <section className="reviews-section">
         <div className="container-content">
-          <h2 className="section-title centered">Lo Que Dicen Nuestros Clientes</h2>
-          <div className="review-card">
+          <h2 className="section-title centered animate-on-scroll">Lo Que Dicen Nuestros Clientes</h2>
+          <div className="review-card animate-on-scroll">
             <div className="review-stars">
               {[...Array(5)].map((_, i) =>
               <Star key={i} size={32} fill="#00FFD1" color="#00FFD1" />
@@ -235,8 +254,8 @@ const Home = () => {
       {/* Contact Section */}
       <section id="contacto" className="contact-section">
         <div className="container-content">
-          <h2 className="section-title centered">Contacto</h2>
-          <p className="section-subtitle centered">
+          <h2 className="section-title centered animate-on-scroll">Contacto</h2>
+          <p className="section-subtitle centered animate-on-scroll">
             Estamos aquí para ayudarte con tu maquinaria
           </p>
           <div className="contact-grid">
