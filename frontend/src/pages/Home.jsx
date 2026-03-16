@@ -56,8 +56,8 @@ const Home = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const whatsappNumber = '34634919257';
-  const phoneNumber = '634919257';
+  const whatsappNumber = '34661388880';
+  const phoneNumber = '661388880';
 
   const services = [
   {
@@ -134,7 +134,7 @@ const Home = () => {
             </a>
             <a href={`tel:${phoneNumber}`} className="btn-secondary btn-large">
               <Phone size={20} />
-              634 91 92 57
+              661 38 88 80
             </a>
           </div>
           <div className="hero-rating">
@@ -368,7 +368,7 @@ const Home = () => {
             </div>
             <div className="footer-contact">
               <h4 className="footer-heading">Contacto</h4>
-              <p className="footer-text">634 91 92 57</p>
+              <p className="footer-text">661 38 88 80</p>
               <p className="footer-text">Aguadulce, Almería</p>
             </div>
           </div>
