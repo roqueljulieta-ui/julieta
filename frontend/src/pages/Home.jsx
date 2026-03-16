@@ -88,7 +88,11 @@ const Home = () => {
       <header className="dark-header">
         <div className="header-content">
           <a href="#inicio" className="logo-section">
-            <Truck size={32} className="logo-icon" />
+            <img 
+              src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/qfw1i8la_ChatGPT%20Image%207%20oct%202025%2C%2011_23_03%20p.m..png" 
+              alt="Services Truck Logo"
+              className="logo-image"
+            />
             <h1 className="logo-text">Services Truck</h1>
           </a>
           <nav className={`dark-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
@@ -344,7 +348,11 @@ const Home = () => {
           <div className="footer-content">
             <div className="footer-brand">
               <div className="footer-logo">
-                <Truck size={28} className="logo-icon" />
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/qfw1i8la_ChatGPT%20Image%207%20oct%202025%2C%2011_23_03%20p.m..png" 
+                  alt="Services Truck Logo"
+                  className="footer-logo-image"
+                />
                 <span className="logo-text">Services Truck</span>
               </div>
               <p className="footer-text">

@@ -1,5 +1,8 @@
 /* Services Truck - Dark Industrial Theme */
 
+/* Import Modern Font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 /* CSS Variables */
 :root {
   /* Backgrounds - Dark Theme Foundation */
@@ -35,7 +38,7 @@
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -81,6 +84,13 @@ body {
 
 .logo-section:hover {
   opacity: 0.8;
+}
+
+.logo-image {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .logo-icon {
@@ -725,6 +735,13 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.footer-logo-image {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .footer-heading {
