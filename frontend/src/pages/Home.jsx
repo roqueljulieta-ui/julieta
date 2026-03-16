@@ -159,7 +159,7 @@ const Home = () => {
           <div className="hero-rating">
             <div className="stars">
               {[...Array(5)].map((_, i) =>
-              <Star key={i} size={24} fill="#00FFD1" color="#00FFD1" />
+              <Star key={i} size={24} fill="#FF6B00" color="#FF6B00" />
               )}
             </div>
             <span className="rating-text">5.0 estrellas · Valoración de clientes</span>
@@ -237,7 +237,7 @@ const Home = () => {
           <div className="review-card animate-on-scroll">
             <div className="review-stars">
               {[...Array(5)].map((_, i) =>
-              <Star key={i} size={32} fill="#00FFD1" color="#00FFD1" />
+              <Star key={i} size={32} fill="#FF6B00" color="#FF6B00" />
               )}
             </div>
             <p className="review-text">

@@ -1,7 +1,7 @@
 /* Services Truck - Dark Industrial Theme */
 
-/* Import Modern Font - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+/* Import Modern Elegant Font - Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
 /* CSS Variables */
 :root {
@@ -19,12 +19,12 @@
   --border-subtle: rgba(255, 255, 255, 0.25);
   --border-medium: rgba(255, 255, 255, 0.4);
   
-  /* Brand Colors - Cyan-Green Primary */
-  --brand-primary: #00FFD1;
-  --brand-hover: rgba(0, 255, 209, 0.1);
-  --brand-active: #6FD2C0;
+  /* Brand Colors - Orange Only */
+  --brand-primary: #FF6B00;
+  --brand-hover: rgba(255, 107, 0, 0.1);
+  --brand-active: #FF8534;
   
-  /* Orange Accent (for CTAs only) */
+  /* Orange Accent */
   --orange-primary: #FF6B00;
   --orange-hover: #FF8534;
 }
@@ -38,7 +38,7 @@
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -417,7 +417,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 80% 20%, rgba(0, 255, 209, 0.03) 0%, transparent 50%);
+  background: radial-gradient(circle at 80% 20%, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -495,8 +495,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 50%, rgba(0, 255, 209, 0.05) 0%, transparent 50%),
-              radial-gradient(circle at 80% 50%, rgba(255, 107, 0, 0.05) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 50%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -524,7 +524,7 @@ body {
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, var(--brand-primary) 0%, var(--orange-primary) 100%);
+  background: var(--brand-primary);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -537,7 +537,7 @@ body {
   background: rgba(255, 255, 255, 0.08);
   border-color: var(--brand-primary);
   transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 255, 209, 0.2);
+  box-shadow: 0 12px 40px rgba(255, 107, 0, 0.3);
 }
 
 .service-icon {
@@ -649,7 +649,7 @@ body {
 .contact-icon {
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, rgba(0, 255, 209, 0.1) 0%, rgba(255, 107, 0, 0.1) 100%);
+  background: rgba(255, 107, 0, 0.1);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   display: flex;
@@ -661,7 +661,7 @@ body {
 }
 
 .contact-icon:hover {
-  background: linear-gradient(135deg, rgba(0, 255, 209, 0.2) 0%, rgba(255, 107, 0, 0.2) 100%);
+  background: rgba(255, 107, 0, 0.2);
   transform: scale(1.05);
 }
 
@@ -715,7 +715,7 @@ body {
   outline: none;
   border-color: var(--brand-primary);
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 3px rgba(0, 255, 209, 0.1);
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
 }
 
 .form-input::placeholder,
@@ -759,7 +759,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0, 255, 209, 0.03) 0%, rgba(255, 107, 0, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.03) 0%, rgba(0, 0, 0, 0) 100%);
   pointer-events: none;
 }
 
@@ -807,7 +807,7 @@ body {
   left: 0;
   width: 40px;
   height: 3px;
-  background: linear-gradient(90deg, var(--brand-primary) 0%, var(--orange-primary) 100%);
+  background: var(--brand-primary);
 }
 
 .footer-text {
