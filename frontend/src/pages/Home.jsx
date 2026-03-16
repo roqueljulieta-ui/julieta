@@ -23,7 +23,7 @@ const Home = () => {
           const offset = 80; // Header height
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
-          
+
           window.scrollTo({
             top: offsetPosition,
             behavior: 'smooth'
@@ -34,12 +34,12 @@ const Home = () => {
     };
 
     const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
+    links.forEach((link) => {
       link.addEventListener('click', handleSmoothScroll);
     });
 
     return () => {
-      links.forEach(link => {
+      links.forEach((link) => {
         link.removeEventListener('click', handleSmoothScroll);
       });
     };
@@ -60,27 +60,27 @@ const Home = () => {
   const phoneNumber = '634919257';
 
   const services = [
-    {
-      title: 'Reparación de Motores de Camiones',
-      description: 'Especialistas en diagnóstico y reparación completa de motores de camiones de todas las marcas.',
-      icon: <Truck size={40} />
-    },
-    {
-      title: 'Maquinaria Pesada',
-      description: 'Mantenimiento y reparación de excavadoras, grúas y equipos de construcción.',
-      icon: <Settings size={40} />
-    },
-    {
-      title: 'Diagnóstico y Mantenimiento',
-      description: 'Diagnóstico electrónico avanzado y mantenimiento preventivo de motores industriales.',
-      icon: <Wrench size={40} />
-    },
-    {
-      title: 'Motores Industriales y Marinos',
-      description: 'Reparación especializada en motores industriales de alta potencia y algunos motores marinos.',
-      icon: <Settings size={40} />
-    }
-  ];
+  {
+    title: 'Reparación de Motores de Camiones',
+    description: 'Especialistas en diagnóstico y reparación completa de motores de camiones de todas las marcas.',
+    icon: <Truck size={40} />
+  },
+  {
+    title: 'Maquinaria Pesada',
+    description: 'Mantenimiento y reparación de excavadoras, grúas y equipos de construcción.',
+    icon: <Settings size={40} />
+  },
+  {
+    title: 'Diagnóstico y Mantenimiento',
+    description: 'Diagnóstico electrónico avanzado y mantenimiento preventivo de motores industriales.',
+    icon: <Wrench size={40} />
+  },
+  {
+    title: 'Motores Industriales y Marinos',
+    description: 'Reparación especializada en motores industriales de alta potencia y algunos motores marinos.',
+    icon: <Settings size={40} />
+  }];
+
 
   return (
     <div className="home-container">
@@ -88,11 +88,11 @@ const Home = () => {
       <header className="dark-header">
         <div className="header-content">
           <a href="#inicio" className="logo-section">
-            <img 
-              src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/qfw1i8la_ChatGPT%20Image%207%20oct%202025%2C%2011_23_03%20p.m..png" 
+            <img
+              src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/qfw1i8la_ChatGPT%20Image%207%20oct%202025%2C%2011_23_03%20p.m..png"
               alt="Services Truck Logo"
-              className="logo-image"
-            />
+              className="logo-image" />
+
             <h1 className="logo-text">Services Truck</h1>
           </a>
           <nav className={`dark-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
@@ -105,11 +105,11 @@ const Home = () => {
               Llamar Ahora
             </a>
           </nav>
-          <button 
+          <button
             className="mobile-menu-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
+            aria-label="Toggle menu">
+
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
@@ -118,11 +118,11 @@ const Home = () => {
       {/* Hero Section */}
       <section id="inicio" className="hero-section">
         <div className="hero-overlay"></div>
-        <img 
+        <img
           src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/i6qjmwjj_312c2f32-8898-4365-8ef1-cd1678473ad0.jpg"
           alt="Mecánico trabajando en motor de maquinaria pesada"
-          className="hero-image"
-        />
+          className="hero-image" />
+
         <div className="hero-content">
           <h1 className="hero-title">Especialistas en Motores de Maquinaria Pesada</h1>
           <p className="hero-subtitle">
@@ -139,9 +139,9 @@ const Home = () => {
           </div>
           <div className="hero-rating">
             <div className="stars">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={24} fill="#00FFD1" color="#00FFD1" />
-              ))}
+              {[...Array(5)].map((_, i) =>
+              <Star key={i} size={24} fill="#00FFD1" color="#00FFD1" />
+              )}
             </div>
             <span className="rating-text">5.0 estrellas · Valoración de clientes</span>
           </div>
@@ -182,11 +182,11 @@ const Home = () => {
               </div>
             </div>
             <div className="about-image-container">
-              <img 
+              <img
                 src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/ybrxr929_PHOTO-2025-10-07-23-54-24.jpg"
                 alt="Camión volquete en trabajo de construcción - Services Truck"
-                className="about-image"
-              />
+                className="about-image" />
+
             </div>
           </div>
         </div>
@@ -200,13 +200,13 @@ const Home = () => {
             Soluciones completas para tu maquinaria pesada
           </p>
           <div className="services-grid">
-            {services.map((service, index) => (
-              <div key={index} className="service-card">
+            {services.map((service, index) =>
+            <div key={index} className="service-card">
                 <div className="service-icon">{service.icon}</div>
                 <h3 className="service-title">{service.title}</h3>
                 <p className="service-description">{service.description}</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -217,9 +217,9 @@ const Home = () => {
           <h2 className="section-title centered">Lo Que Dicen Nuestros Clientes</h2>
           <div className="review-card">
             <div className="review-stars">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={32} fill="#00FFD1" color="#00FFD1" />
-              ))}
+              {[...Array(5)].map((_, i) =>
+              <Star key={i} size={32} fill="#00FFD1" color="#00FFD1" />
+              )}
             </div>
             <p className="review-text">
               "Excelente servicio, muy profesional todo, mil gracias."
@@ -260,8 +260,8 @@ const Home = () => {
                 </div>
                 <div>
                   <h3 className="contact-label">Teléfono</h3>
-                  <a href={`tel:${phoneNumber}`} className="contact-link">
-                    634 91 92 57
+                  <a href={`tel:${phoneNumber}`} className="contact-link">661388880
+
                   </a>
                 </div>
               </div>
@@ -271,12 +271,12 @@ const Home = () => {
                 </div>
                 <div>
                   <h3 className="contact-label">WhatsApp</h3>
-                  <a 
+                  <a
                     href={`https://wa.me/${whatsappNumber}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="contact-link"
-                  >
+                    className="contact-link">
+
                     Enviar mensaje
                   </a>
                 </div>
@@ -290,8 +290,8 @@ const Home = () => {
                   value={formData.nombre}
                   onChange={handleChange}
                   className="form-input"
-                  required
-                />
+                  required />
+
                 <input
                   type="email"
                   name="email"
@@ -299,8 +299,8 @@ const Home = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="form-input"
-                  required
-                />
+                  required />
+
                 <input
                   type="tel"
                   name="telefono"
@@ -308,8 +308,8 @@ const Home = () => {
                   value={formData.telefono}
                   onChange={handleChange}
                   className="form-input"
-                  required
-                />
+                  required />
+
                 <textarea
                   name="mensaje"
                   placeholder="Mensaje"
@@ -317,8 +317,8 @@ const Home = () => {
                   onChange={handleChange}
                   className="form-textarea"
                   rows="4"
-                  required
-                ></textarea>
+                  required>
+                </textarea>
                 <button type="submit" className="btn-primary btn-full">
                   Enviar Mensaje
                 </button>
@@ -335,8 +335,8 @@ const Home = () => {
                 style={{ border: 0, borderRadius: '12px' }}
                 allowFullScreen=""
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+                referrerPolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
           </div>
         </div>
@@ -348,11 +348,11 @@ const Home = () => {
           <div className="footer-content">
             <div className="footer-brand">
               <div className="footer-logo">
-                <img 
-                  src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/qfw1i8la_ChatGPT%20Image%207%20oct%202025%2C%2011_23_03%20p.m..png" 
+                <img
+                  src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/qfw1i8la_ChatGPT%20Image%207%20oct%202025%2C%2011_23_03%20p.m..png"
                   alt="Services Truck Logo"
-                  className="footer-logo-image"
-                />
+                  className="footer-logo-image" />
+
                 <span className="logo-text">Services Truck</span>
               </div>
               <p className="footer-text">
@@ -386,12 +386,12 @@ const Home = () => {
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-float"
-        aria-label="Contactar por WhatsApp"
-      >
+        aria-label="Contactar por WhatsApp">
+
         <MessageCircle size={28} />
       </a>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Home;
