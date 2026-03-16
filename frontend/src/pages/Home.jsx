@@ -87,10 +87,10 @@ const Home = () => {
       {/* Header */}
       <header className="dark-header">
         <div className="header-content">
-          <div className="logo-section">
+          <a href="#inicio" className="logo-section">
             <Truck size={32} className="logo-icon" />
             <h1 className="logo-text">Services Truck</h1>
-          </div>
+          </a>
           <nav className={`dark-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
             <a href="#inicio" className="dark-nav-link">Inicio</a>
             <a href="#servicios" className="dark-nav-link">Servicios</a>
@@ -101,10 +101,6 @@ const Home = () => {
               Llamar Ahora
             </a>
           </nav>
-          <a href={`tel:${phoneNumber}`} className="btn-primary header-cta desktop-only">
-            <Phone size={20} />
-            Llamar Ahora
-          </a>
           <button 
             className="mobile-menu-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -119,8 +115,8 @@ const Home = () => {
       <section id="inicio" className="hero-section">
         <div className="hero-overlay"></div>
         <img 
-          src="https://images.unsplash.com/photo-1592838064575-70ed626d3a0e"
-          alt="Maquinaria pesada"
+          src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/i6qjmwjj_312c2f32-8898-4365-8ef1-cd1678473ad0.jpg"
+          alt="Mecánico trabajando en motor de maquinaria pesada"
           className="hero-image"
         />
         <div className="hero-content">
@@ -183,8 +179,8 @@ const Home = () => {
             </div>
             <div className="about-image-container">
               <img 
-                src="https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62"
-                alt="Taller Services Truck"
+                src="https://customer-assets.emergentagent.com/job_services-truck-pro/artifacts/ybrxr929_PHOTO-2025-10-07-23-54-24.jpg"
+                alt="Camión volquete en trabajo de construcción - Services Truck"
                 className="about-image"
               />
             </div>
