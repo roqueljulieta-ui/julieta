@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, Star, MessageCircle, Wrench, Truck, Settings, CheckCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Star, MessageCircle, Wrench, Truck, Settings, CheckCircle, Menu, X } from 'lucide-react';
 import '../styles/Home.css';
 
 const Home = () => {
@@ -9,6 +9,8 @@ const Home = () => {
     telefono: '',
     mensaje: ''
   });
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Smooth scroll for navigation links
@@ -26,6 +28,7 @@ const Home = () => {
             top: offsetPosition,
             behavior: 'smooth'
           });
+          setMobileMenuOpen(false);
         }
       }
     };
@@ -88,16 +91,27 @@ const Home = () => {
             <Truck size={32} className="logo-icon" />
             <h1 className="logo-text">Services Truck</h1>
           </div>
-          <nav className="dark-nav">
+          <nav className={`dark-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
             <a href="#inicio" className="dark-nav-link">Inicio</a>
             <a href="#servicios" className="dark-nav-link">Servicios</a>
             <a href="#sobre-nosotros" className="dark-nav-link">Nosotros</a>
             <a href="#contacto" className="dark-nav-link">Contacto</a>
+            <a href={`tel:${phoneNumber}`} className="btn-primary mobile-cta">
+              <Phone size={20} />
+              Llamar Ahora
+            </a>
           </nav>
-          <a href={`tel:${phoneNumber}`} className="btn-primary header-cta">
+          <a href={`tel:${phoneNumber}`} className="btn-primary header-cta desktop-only">
             <Phone size={20} />
             Llamar Ahora
           </a>
+          <button 
+            className="mobile-menu-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
       </header>
 
@@ -267,63 +281,63 @@ const Home = () => {
                   </a>
                 </div>
               </div>
+
+              <form className="contact-form" onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="nombre"
+                  placeholder="Nombre"
+                  value={formData.nombre}
+                  onChange={handleChange}
+                  className="form-input"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="form-input"
+                  required
+                />
+                <input
+                  type="tel"
+                  name="telefono"
+                  placeholder="Teléfono"
+                  value={formData.telefono}
+                  onChange={handleChange}
+                  className="form-input"
+                  required
+                />
+                <textarea
+                  name="mensaje"
+                  placeholder="Mensaje"
+                  value={formData.mensaje}
+                  onChange={handleChange}
+                  className="form-textarea"
+                  rows="4"
+                  required
+                ></textarea>
+                <button type="submit" className="btn-primary btn-full">
+                  Enviar Mensaje
+                </button>
+              </form>
             </div>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                value={formData.nombre}
-                onChange={handleChange}
-                className="form-input"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                className="form-input"
-                required
-              />
-              <input
-                type="tel"
-                name="telefono"
-                placeholder="Teléfono"
-                value={formData.telefono}
-                onChange={handleChange}
-                className="form-input"
-                required
-              />
-              <textarea
-                name="mensaje"
-                placeholder="Mensaje"
-                value={formData.mensaje}
-                onChange={handleChange}
-                className="form-textarea"
-                rows="4"
-                required
-              ></textarea>
-              <button type="submit" className="btn-primary btn-full">
-                Enviar Mensaje
-              </button>
-            </form>
-          </div>
-
-          {/* Google Maps */}
-          <div className="map-container">
-            <iframe
-              title="Ubicación Services Truck"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3177.948066947838!2d-2.587485723901652!3d36.82341467224098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7aa6e6e6e6e6e6%3A0x5f5f5f5f5f5f5f5f!2sPaseo%20del%20Limonar%2C%203%2C%2004720%20Aguadulce%2C%20Almer%C3%ADa!5e0!3m2!1ses!2ses!4v1710000000000"
-              width="100%"
-              height="400"
-              style={{ border: 0, borderRadius: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            {/* Google Maps */}
+            <div className="map-container">
+              <iframe
+                title="Ubicación Services Truck"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3177.948066947838!2d-2.587485723901652!3d36.82341467224098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7aa6e6e6e6e6e6%3A0x5f5f5f5f5f5f5f5f!2sPaseo%20del%20Limonar%2C%203%2C%2004720%20Aguadulce%2C%20Almer%C3%ADa!5e0!3m2!1ses!2ses!4v1710000000000"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: '12px' }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>
