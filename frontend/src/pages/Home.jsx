@@ -179,7 +179,7 @@ const Home = () => {
           <div className="hero-cta-group hero-animate">
             <button onClick={() => setAppointmentModalOpen(true)} className="btn-primary btn-large">
               <Calendar size={20} />
-              Solicitar Cita
+              Solicitar Presupuesto
             </button>
             <a href={`tel:${phoneNumber}`} className="btn-secondary btn-large">
               <Phone size={20} />

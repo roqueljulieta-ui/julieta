@@ -95,7 +95,7 @@ const AppointmentModal = ({ isOpen, onClose, backendUrl }) => {
           <>
             <div className="modal-header">
               <Calendar size={32} className="modal-icon" />
-              <h2>Solicitar Cita</h2>
+              <h2>Solicitar Presupuesto</h2>
               <p>Completa el formulario y te contactaremos para confirmar</p>
             </div>
 
