@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, Star, MessageCircle, Wrench, Truck, Settings, CheckCircle, Menu, X } from 'lucide-react';
+import { Phone, Mail, MapPin, Star, MessageCircle, Wrench, Truck, Settings, CheckCircle, Menu, X, Calendar } from 'lucide-react';
 import '../styles/Home.css';
+import AppointmentModal from '../components/AppointmentModal';
 
 const Home = () => {
   const [formData, setFormData] = useState({
