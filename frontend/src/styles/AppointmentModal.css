@@ -12,6 +12,7 @@
   z-index: 2000;
   backdrop-filter: blur(8px);
   animation: fadeIn 0.3s ease;
+  pointer-events: auto;
 }
 
 @keyframes fadeIn {
@@ -35,6 +36,8 @@
   position: relative;
   animation: slideUp 0.3s ease;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+  z-index: 2001;
 }
 
 @keyframes slideUp {

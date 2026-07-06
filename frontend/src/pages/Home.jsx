@@ -12,6 +12,12 @@ const Home = () => {
   });
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const whatsappNumber = '34661388880';
+  const phoneNumber = '661388880';
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     // Smooth scroll for navigation links
@@ -65,19 +71,41 @@ const Home = () => {
     };
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock form submission
-    alert('Gracias por tu mensaje. Te contactaremos pronto.');
-    setFormData({ nombre: '', email: '', telefono: '', mensaje: '' });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('¡Mensaje enviado! Te contactaremos pronto.');
+        setFormData({ nombre: '', email: '', telefono: '', mensaje: '' });
+        
+        // Optional: Open WhatsApp
+        const whatsappMessage = `Hola, acabo de enviar un mensaje desde la web. ${formData.mensaje}`;
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank');
+      } else {
+        alert('Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error de conexión. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const whatsappNumber = '34661388880';
-  const phoneNumber = '661388880';
 
   const services = [
   {
@@ -149,9 +177,10 @@ const Home = () => {
             Reparación y mantenimiento profesional de camiones, excavadoras, grúas y motores industriales en Almería
           </p>
           <div className="hero-cta-group hero-animate">
-            <a href="#contacto" className="btn-primary btn-large">
-              Solicitar Presupuesto
-            </a>
+            <button onClick={() => setAppointmentModalOpen(true)} className="btn-primary btn-large">
+              <Calendar size={20} />
+              Solicitar Cita
+            </button>
             <a href={`tel:${phoneNumber}`} className="btn-secondary btn-large">
               <Phone size={20} />
               +34 661 38 88 80
@@ -339,8 +368,8 @@ const Home = () => {
                   rows="4"
                   required>
                 </textarea>
-                <button type="submit" className="btn-primary btn-full">
-                  Enviar Mensaje
+                <button type="submit" className="btn-primary btn-full" disabled={isSubmitting}>
+                  {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
                 </button>
               </form>
             </div>
@@ -402,7 +431,7 @@ const Home = () => {
 
       {/* WhatsApp Floating Button */}
       <a
-        href={`https://wa.me/${whatsappNumber}`}
+        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola, necesito información sobre servicios de reparación de maquinaria pesada.')}`}
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-float"
@@ -410,6 +439,13 @@ const Home = () => {
 
         <MessageCircle size={28} />
       </a>
+
+      {/* Appointment Modal */}
+      <AppointmentModal
+        isOpen={appointmentModalOpen}
+        onClose={() => setAppointmentModalOpen(false)}
+        backendUrl={BACKEND_URL}
+      />
     </div>);
 
 };
