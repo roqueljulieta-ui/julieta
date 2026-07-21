@@ -4,12 +4,13 @@ from datetime import datetime
 
 BUSINESS_EMAIL = "info@servicestrucks.com"
 WHATSAPP_NUMBER = "34661388880"
+BACKEND_URL = "https://servicestrucks-backend.onrender.com"
 
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
 RESEND_FROM = "Services Truck <info@servicestrucks.com>"
 
 
-def _send_email(subject, html_body, to_email=BUSINESS_EMAIL):
+def _send_email(subject, html_body, to_email):
     try:
         response = requests.post(
             "https://api.resend.com/emails",
@@ -45,7 +46,7 @@ def send_contact_email(data):
 
     subject = "Nuevo Mensaje de Contacto - " + nombre
 
-    html_body = """
+    html_body = ("""
     <html>
         <body style="font-family: Arial, sans-serif; color: #333;">
             <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
@@ -67,11 +68,12 @@ def send_contact_email(data):
             </div>
         </body>
     </html>
-    """
-    return _send_email(subject, html_body)
+    """)
+    return _send_email(subject, html_body, BUSINESS_EMAIL)
 
 
-def send_appointment_email(data):
+def send_appointment_email(data, appointment_id):
+    """Notifica al negocio con un boton para confirmar la cita"""
     nombre = data.get("nombre", "")
     apellidos = data.get("apellidos", "")
     email = data.get("email", "")
@@ -82,9 +84,11 @@ def send_appointment_email(data):
     descripcion = data.get("descripcion", "")
     fecha = datetime.now().strftime("%d/%m/%Y a las %H:%M")
 
+    confirm_link = BACKEND_URL + "/api/appointments/" + appointment_id + "/confirm"
+
     subject = "Nueva Solicitud de Cita - " + nombre + " " + apellidos
 
-    html_body = """
+    html_body = ("""
     <html>
         <body style="font-family: Arial, sans-serif; color: #333;">
             <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
@@ -107,9 +111,10 @@ def send_appointment_email(data):
                         """ + descripcion + """
                     </div>
 
-                    <div style="margin-top: 30px; padding: 15px; background: #fff3e0; border-left: 4px solid #FF6B00;">
-                        <p style="margin: 0;"><strong>Accion Requerida:</strong></p>
-                        <p style="margin: 5px 0 0 0;">Contacta al cliente para confirmar la cita.</p>
+                    <div style="margin-top: 30px; text-align: center;">
+                        <a href='""" + confirm_link + """' style="background: #FF6B00; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 6px; font-weight: bold; display: inline-block;">
+                            Confirmar Cita
+                        </a>
                     </div>
 
                     <p style="color: #666; font-size: 12px; margin-top: 20px;">
@@ -119,8 +124,69 @@ def send_appointment_email(data):
             </div>
         </body>
     </html>
-    """
-    return _send_email(subject, html_body)
+    """)
+    return _send_email(subject, html_body, BUSINESS_EMAIL)
+
+
+def send_appointment_received_email(data):
+    """Se envia al cliente automaticamente unos minutos despues de enviar el formulario"""
+    nombre = data.get("nombre", "")
+    email = data.get("email", "")
+    tipo_servicio = data.get("tipo_servicio", "")
+    fecha_preferida = data.get("fecha_preferida", "")
+    hora_preferida = data.get("hora_preferida", "")
+
+    subject = "Hemos recibido tu solicitud - Services Trucks"
+
+    html_body = ("""
+    <html>
+        <body style="font-family: Arial, sans-serif; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+                <h2 style="color: #0A1929; border-bottom: 3px solid #FF6B00; padding-bottom: 10px;">
+                    Hemos recibido tu solicitud
+                </h2>
+                <div style="margin: 20px 0;">
+                    <p>Hola """ + nombre + """,</p>
+                    <p>Gracias por contactar a <strong>Services Trucks Mecanica Pesada</strong>.</p>
+                    <p>Hemos recibido tu solicitud para <strong>""" + tipo_servicio + """</strong> el dia """ + fecha_preferida + """ a las """ + hora_preferida + """.</p>
+                    <p>En breve nos pondremos en contacto contigo para confirmar los detalles.</p>
+                    <p style="margin-top: 30px;">Un saludo,<br/>Equipo Services Trucks</p>
+                </div>
+            </div>
+        </body>
+    </html>
+    """)
+    return _send_email(subject, html_body, email)
+
+
+def send_appointment_confirmed_email(data):
+    """Se envia al cliente cuando el negocio confirma la cita"""
+    nombre = data.get("nombre", "")
+    email = data.get("email", "")
+    tipo_servicio = data.get("tipo_servicio", "")
+    fecha_preferida = data.get("fecha_preferida", "")
+    hora_preferida = data.get("hora_preferida", "")
+
+    subject = "Tu cita ha sido confirmada - Services Trucks"
+
+    html_body = ("""
+    <html>
+        <body style="font-family: Arial, sans-serif; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+                <h2 style="color: #0A1929; border-bottom: 3px solid #FF6B00; padding-bottom: 10px;">
+                    Tu cita ha sido confirmada
+                </h2>
+                <div style="margin: 20px 0;">
+                    <p>Hola """ + nombre + """,</p>
+                    <p>Te confirmamos tu cita para <strong>""" + tipo_servicio + """</strong> el dia """ + fecha_preferida + """ a las """ + hora_preferida + """.</p>
+                    <p>Si necesitas modificar el horario, responde a este correo o escribenos por WhatsApp.</p>
+                    <p style="margin-top: 30px;">Un saludo,<br/>Equipo Services Trucks</p>
+                </div>
+            </div>
+        </body>
+    </html>
+    """)
+    return _send_email(subject, html_body, email)
 
 
 def generate_whatsapp_link(data, message_type="contact"):
