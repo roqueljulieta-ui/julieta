@@ -1,29 +1,33 @@
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import requests
 import os
 from datetime import datetime
 
 BUSINESS_EMAIL = "info@servicestrucks.com"
 WHATSAPP_NUMBER = "34661388880"
 
-SMTP_SERVER = "smtp.hostinger.com"
-SMTP_PORT = 465
-SMTP_USER = os.environ.get("EMAIL_USER", "info@servicestrucks.com")
-SMTP_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
+RESEND_FROM = "Services Truck <info@servicestrucks.com>"
 
 
 def _send_email(subject, html_body, to_email=BUSINESS_EMAIL):
     try:
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = subject
-        msg["From"] = SMTP_USER
-        msg["To"] = to_email
-        msg.attach(MIMEText(html_body, "html"))
-
-        with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
-            server.login(SMTP_USER, SMTP_PASSWORD)
-            server.sendmail(SMTP_USER, to_email, msg.as_string())
+        response = requests.post(
+            "https://api.resend.com/emails",
+            headers={
+                "Authorization": "Bearer " + RESEND_API_KEY,
+                "Content-Type": "application/json",
+            },
+            json={
+                "from": RESEND_FROM,
+                "to": [to_email],
+                "subject": subject,
+                "html": html_body,
+            },
+            timeout=10,
+        )
+        if response.status_code >= 400:
+            print("[EMAIL ERROR] " + response.text)
+            return {"success": False, "error": response.text}
 
         print("[EMAIL] Sent successfully to " + to_email)
         return {"success": True, "message": "Email sent"}
